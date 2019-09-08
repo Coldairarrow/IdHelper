@@ -8,6 +8,11 @@
         internal static IdWorker IdWorker { get; set; }
 
         /// <summary>
+        /// 当前WorkerId
+        /// </summary>
+        public static long WorkerId { get => IdWorker.WorkerId; }
+
+        /// <summary>
         /// 获取String型雪花Id
         /// </summary>
         /// <returns></returns>
