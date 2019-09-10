@@ -76,17 +76,19 @@ namespace Coldairarrow.Util
             {
                 string recordNodePath = $"{_workerIdRecordRootPath}/{aChild}";
                 string tmpNodePath = $"{_workderIdTmpRootPath}/{aChild}";
-                var data = Encoding.UTF8.GetString((await _zookeeperClient.getDataAsync(recordNodePath, true)).Data)
-                    .ToObject<WorkerIdRecord>();
-                if (data.EndTime < DateTime.Now.AddMinutes(-10))
+
+                //临时节点不存在
+                if (await _zookeeperClient.existsAsync(tmpNodePath, true) == null)
                 {
-                    await _zookeeperClient.deleteAsync(recordNodePath);
-                }
-                //不存在对应临时节点
-                else if (await _zookeeperClient.existsAsync(tmpNodePath, true) == null)
-                {
-                    data.EndTime = DateTime.Now;
-                    await _zookeeperClient.setDataAsync(recordNodePath, Encoding.UTF8.GetBytes(data.ToJson()));
+                    var data = Encoding.UTF8.GetString((await _zookeeperClient.getDataAsync(recordNodePath, true)).Data)
+                        .ToObject<WorkerIdRecord>();
+                    if (data.EndTime == null)
+                    {
+                        data.EndTime = DateTime.Now;
+                        await _zookeeperClient.setDataAsync(recordNodePath, Encoding.UTF8.GetBytes(data.ToJson()));
+                    }
+                    else if (data.EndTime < DateTime.Now.AddMinutes(-10))
+                        await _zookeeperClient.deleteAsync(recordNodePath);
                 }
             }
         }

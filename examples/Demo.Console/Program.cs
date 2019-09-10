@@ -12,8 +12,9 @@ namespace Demo
     {
         public static void GetIdTest()
         {
+            string conString = "61.153.17.5:2181";
             new IdHelperBootstrapper()
-                .UseZookeeper("127.0.0.1:2181", 5000, "Test")
+                .UseZookeeper(conString, 5000, "Test")
                 .Boot();
 
             Console.WriteLine($"WorkerId:{IdHelper.WorkerId}");
