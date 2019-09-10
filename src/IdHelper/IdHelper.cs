@@ -1,4 +1,6 @@
-﻿namespace Coldairarrow.Util
+﻿using System;
+
+namespace Coldairarrow.Util
 {
     /// <summary>
     /// Id获取帮助类
@@ -6,6 +8,8 @@
     public static class IdHelper
     {
         internal static IdWorker IdWorker { get; set; }
+
+        internal static IdHelperBootstrapper IdHelperBootstrapper { get; set; }
 
         /// <summary>
         /// 当前WorkerId,范围:1~1023
@@ -18,7 +22,7 @@
         /// <returns></returns>
         static public string GetId()
         {
-            return IdWorker.NextId().ToString();
+            return GetLongId().ToString();
         }
 
         /// <summary>
@@ -27,6 +31,9 @@
         /// <returns></returns>
         static public long GetLongId()
         {
+            if (!IdHelperBootstrapper.Available())
+                throw new Exception("当前系统异常,无法生成Id,请检查相关配置");
+
             return IdWorker.NextId();
         }
 
@@ -36,7 +43,7 @@
         /// <returns></returns>
         static public SnowflakeId GetStructId()
         {
-            return new SnowflakeId(IdWorker.NextId());
+            return new SnowflakeId(GetLongId());
         }
     }
 }

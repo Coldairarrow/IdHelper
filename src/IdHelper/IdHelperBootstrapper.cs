@@ -23,6 +23,15 @@
         }
 
         /// <summary>
+        /// 是否可用
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool Available()
+        {
+            return true;
+        }
+
+        /// <summary>
         /// 设置机器Id
         /// </summary>
         /// <param name="workderId">机器Id</param>
@@ -40,6 +49,7 @@
         public void Boot()
         {
             IdHelper.IdWorker = new IdWorker(GetWorkerId());
+            IdHelper.IdHelperBootstrapper = this;
         }
     }
 }

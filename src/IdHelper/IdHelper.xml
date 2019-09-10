@@ -51,6 +51,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Coldairarrow.Util.IdHelperBootstrapper.Available">
+            <summary>
+            是否可用
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Coldairarrow.Util.IdHelperBootstrapper.SetWorkderId(System.Int64)">
             <summary>
             设置机器Id

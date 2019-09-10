@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IdHelper.Zookeeper</name>
+    </assembly>
+    <members>
+        <member name="T:Coldairarrow.Util.Extention">
+            <summary>
+            拓展类
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.Util.Extention.UseZookeeper(Coldairarrow.Util.IdHelperBootstrapper,System.String,System.Int32,System.String)">
+            <summary>
+            使用Zookeeper
+            </summary>
+            <param name="bootstrapper">原引导着</param>
+            <param name="connectString">Zookeeper连接字符串</param>
+            <param name="sessionTimeout">超时时间</param>
+            <param name="projectKey">项目主键,同一个项目下的WokerId范围:1~1023</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.Util.Extention.ToJson(System.Object)">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.Util.Extention.ToObject``1(System.String)">
+            <summary>
+            将Json字符串反序列化为对象
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="jsonStr">Json字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.Util.ZookeeperBootstrapper.SyncNodes">
+            <summary>
+            同步临时节点与记录节点
+            说明:若临时节点不存在而记录节点存在,则将记录节点结束时间置为当前时间
+            若记录节点已结束10分钟(即最大允许10分钟时间回拨),则将记录节点也删除
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

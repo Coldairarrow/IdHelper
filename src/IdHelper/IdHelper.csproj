@@ -12,6 +12,7 @@
     <RepositoryUrl>https://github.com/Coldairarrow/IdHelper</RepositoryUrl>
     <PackageReleaseNotes />
     <Version>1.1.1</Version>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
