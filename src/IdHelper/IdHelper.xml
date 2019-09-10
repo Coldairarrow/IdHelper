@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IdHelper</name>
+    </assembly>
+    <members>
+        <member name="T:Coldairarrow.Util.IdHelper">
+            <summary>
+            Id获取帮助类
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Util.IdHelper.WorkerId">
+            <summary>
+            当前WorkerId,范围:1~1023
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.Util.IdHelper.GetId">
+            <summary>
+            获取String型雪花Id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.Util.IdHelper.GetLongId">
+            <summary>
+            获取long型雪花Id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.Util.IdHelper.GetStructId">
+            <summary>
+            获取雪花Id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Coldairarrow.Util.IdHelperBootstrapper">
+            <summary>
+            配置引导
+            </summary>
+        </member>
+        <member name="P:Coldairarrow.Util.IdHelperBootstrapper._worderId">
+            <summary>
+            机器Id
+            </summary>
+            <value>
+            机器Id
+            </value>
+        </member>
+        <member name="M:Coldairarrow.Util.IdHelperBootstrapper.GetWorkerId">
+            <summary>
+            获取机器Id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.Util.IdHelperBootstrapper.SetWorkderId(System.Int64)">
+            <summary>
+            设置机器Id
+            </summary>
+            <param name="workderId">机器Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.Util.IdHelperBootstrapper.Boot">
+            <summary>
+            完成配置
+            </summary>
+        </member>
+        <member name="T:Coldairarrow.Util.IdWorker">
+            <summary>
+            https://github.com/ccollie/snowflake-net
+            </summary>
+        </member>
+        <member name="T:Coldairarrow.Util.SnowflakeId">
+            <summary>
+            雪花Id,全局唯一,性能高,取代GUID
+            </summary>
+        </member>
+        <member name="M:Coldairarrow.Util.SnowflakeId.#ctor(System.Int64)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="id">long形式ID</param>
+        </member>
+        <member name="P:Coldairarrow.Util.SnowflakeId.Id">
+            <summary>
+            获取long形式Id
+            </summary>
+            <value>
+            long形式Id
+            </value>
+        </member>
+        <member name="P:Coldairarrow.Util.SnowflakeId.Time">
+            <summary>
+            Id时间
+            </summary>
+            <value>
+            Id时间
+            </value>
+        </member>
+        <member name="M:Coldairarrow.Util.SnowflakeId.ToString">
+            <summary>
+            转为string形式Id
+            </summary>
+            <returns>
+            string形式Id
+            </returns>
+        </member>
+        <member name="M:Coldairarrow.Util.Extention.Copy``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            复制序列中的数据
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="iEnumberable">原数据</param>
+            <param name="startIndex">原数据开始复制的起始位置</param>
+            <param name="length">需要复制的数据长度</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

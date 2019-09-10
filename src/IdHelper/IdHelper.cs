@@ -8,7 +8,7 @@
         internal static IdWorker IdWorker { get; set; }
 
         /// <summary>
-        /// 当前WorkerId
+        /// 当前WorkerId,范围:1~1023
         /// </summary>
         public static long WorkerId { get => IdWorker.WorkerId; }
 
