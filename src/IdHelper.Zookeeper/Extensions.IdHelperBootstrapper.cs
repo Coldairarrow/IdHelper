@@ -3,7 +3,7 @@
     /// <summary>
     /// 拓展类
     /// </summary>
-    public static partial class Extention
+    public static partial class IdHelperBootstrapperExtention
     {
         /// <summary>
         /// 使用Zookeeper

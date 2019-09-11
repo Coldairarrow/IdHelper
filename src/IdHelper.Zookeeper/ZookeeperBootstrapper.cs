@@ -8,7 +8,7 @@ using static org.apache.zookeeper.ZooDefs;
 
 namespace Coldairarrow.Util
 {
-    class ZookeeperBootstrapper : IdHelperBootstrapper
+    internal class ZookeeperBootstrapper : IdHelperBootstrapper
     {
         #region 构造函数
 

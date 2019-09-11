@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace Coldairarrow.Util
 {
-    class ZookeeperClientLogConsumer : ILogConsumer
+    internal class ZookeeperClientLogConsumer : ILogConsumer
     {
         public ZookeeperClientLogConsumer(Action<TraceLevel, string, Exception> action)
         {

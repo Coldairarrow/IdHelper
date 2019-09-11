@@ -4,12 +4,12 @@
         <name>IdHelper.Zookeeper</name>
     </assembly>
     <members>
-        <member name="T:Coldairarrow.Util.Extention">
+        <member name="T:Coldairarrow.Util.IdHelperBootstrapperExtention">
             <summary>
             拓展类
             </summary>
         </member>
-        <member name="M:Coldairarrow.Util.Extention.UseZookeeper(Coldairarrow.Util.IdHelperBootstrapper,System.String,System.Int32,System.String)">
+        <member name="M:Coldairarrow.Util.IdHelperBootstrapperExtention.UseZookeeper(Coldairarrow.Util.IdHelperBootstrapper,System.String,System.Int32,System.String)">
             <summary>
             使用Zookeeper
             </summary>

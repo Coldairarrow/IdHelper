@@ -6,7 +6,7 @@ using static org.apache.zookeeper.Watcher.Event;
 
 namespace Coldairarrow.Util
 {
-    class ZookeeperClientBuilder
+    internal class ZookeeperClientBuilder
     {
         public ZookeeperClientBuilder(string connectString, int sessionTimeout)
         {

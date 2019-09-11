@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Coldairarrow.Util
 {
-    class ZookeeperClientWatcher : Watcher
+    internal class ZookeeperClientWatcher : Watcher
     {
         public Action<WatchedEvent> EventHandler { get; set; }
         public override async Task process(WatchedEvent @event)

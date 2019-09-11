@@ -2,7 +2,7 @@
 
 namespace Coldairarrow.Util
 {
-    static partial class Extention
+    internal static partial class Extention
     {
         /// <summary>
         /// 将Json字符串反序列化为对象

@@ -2,7 +2,7 @@
 
 namespace Coldairarrow.Util
 {
-    static class System
+    internal static class System
     {
         public static Func<long> currentTimeFunc = InternalCurrentTimeMillis;
  

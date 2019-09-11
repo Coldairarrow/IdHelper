@@ -2,7 +2,7 @@
 
 namespace Coldairarrow.Util
 {
-    class DisposableAction : IDisposable
+    internal class DisposableAction : IDisposable
     {
         readonly Action _action;
 

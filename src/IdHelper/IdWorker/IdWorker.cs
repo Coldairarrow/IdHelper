@@ -5,7 +5,7 @@ namespace Coldairarrow.Util
     /// <summary>
     /// https://github.com/ccollie/snowflake-net
     /// </summary>
-    class IdWorker
+    internal class IdWorker
     {
         public const long Twepoch = 1288834974657L;
 

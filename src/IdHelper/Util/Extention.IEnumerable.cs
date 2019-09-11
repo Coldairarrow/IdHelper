@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Coldairarrow.Util
 {
-    static partial class Extention
+    internal static partial class Extention
     {
         /// <summary>
         /// 复制序列中的数据
