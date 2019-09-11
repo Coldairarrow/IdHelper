@@ -53,8 +53,10 @@ namespace Demo
 
 ```
 ## 完美版
-1：安装并配置JAVA环境（Zookeeper需要用JAVA）  教程：[连接](https://blog.csdn.net/qq_42040731/article/details/82598034)
-2：安装并启动Zookeeper，教程：[链接](https://blog.csdn.net/ring300/article/details/80446918)  
+1：安装并配置JAVA环境（Zookeeper需要用JAVA）  教程：[连接](https://blog.csdn.net/qq_42040731/article/details/82598034)   
+
+2：安装并启动Zookeeper，教程：[链接](https://blog.csdn.net/ring300/article/details/80446918)   
+
 3：Nuget安装包：IdHelper.Zookeeper  
 
 ``` c#
