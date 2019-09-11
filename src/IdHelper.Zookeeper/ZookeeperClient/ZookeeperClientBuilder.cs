@@ -44,6 +44,7 @@ namespace Coldairarrow.Util
         public ZooKeeper Build()
         {
             ZooKeeper.CustomLogConsumer = new ZookeeperClientLogConsumer(_logHandler);
+            ZooKeeper.LogToFile = false;
             ZooKeeper.LogToTrace = true;
             ZooKeeper.LogLevel = TraceLevel.Error;
             var watcher = new ZookeeperClientWatcher();

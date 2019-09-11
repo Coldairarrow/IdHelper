@@ -34,7 +34,7 @@ namespace Coldairarrow.Util
             string path = theEvent.getPath();
             var type = theEvent.get_Type();
             var state = theEvent.getState();
-            Console.WriteLine($"收到事件,状态:{theEvent.getState()},类型:{type},节点:{path}");
+            //Console.WriteLine($"收到事件,状态:{theEvent.getState()},类型:{type},节点:{path}");
 
             //Session过期需要重新建立Zookeeper客户端
             if (state == KeeperState.Expired)
@@ -147,7 +147,7 @@ namespace Coldairarrow.Util
                     })
                     .HandleLog((level, msg, ex) =>
                     {
-                        Console.WriteLine($"消息:{msg},异常:{ex.GetType()}");
+                        //Console.WriteLine($"消息:{msg},异常:{ex?.GetType()}");
                     })
                     .Build();
         }
