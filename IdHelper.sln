@@ -11,11 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdHelper", "src\IdHelper\Id
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdHelper.Zookeeper", "src\IdHelper.Zookeeper\IdHelper.Zookeeper.csproj", "{CD3BB2F2-B745-42B7-960F-D7D148A3109D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Zookeeper", "examples\Demo.Zookeeper\Demo.Zookeeper.csproj", "{D89AFFB1-257E-4E0D-AEA5-7DBF7BBE129D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Zookeeper", "examples\Demo.Zookeeper\Demo.Zookeeper.csproj", "{D89AFFB1-257E-4E0D-AEA5-7DBF7BBE129D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Test", "examples\Demo.Test\Demo.Test.csproj", "{884C904F-0627-44BE-BC39-B6FD448DEEAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Test", "examples\Demo.Test\Demo.Test.csproj", "{884C904F-0627-44BE-BC39-B6FD448DEEAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "examples\Demo\Demo.csproj", "{5A44879D-99C5-4866-9866-6CA7513D4FA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo", "examples\Demo\Demo.csproj", "{5A44879D-99C5-4866-9866-6CA7513D4FA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Web", "examples\Demo.Web\Demo.Web.csproj", "{B22B1870-324E-4A88-B6A0-C1D6F20BAD86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{5A44879D-99C5-4866-9866-6CA7513D4FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A44879D-99C5-4866-9866-6CA7513D4FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A44879D-99C5-4866-9866-6CA7513D4FA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B22B1870-324E-4A88-B6A0-C1D6F20BAD86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B22B1870-324E-4A88-B6A0-C1D6F20BAD86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B22B1870-324E-4A88-B6A0-C1D6F20BAD86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B22B1870-324E-4A88-B6A0-C1D6F20BAD86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{D89AFFB1-257E-4E0D-AEA5-7DBF7BBE129D} = {16DEE8FC-5EDE-42DF-9386-528F579C166D}
 		{884C904F-0627-44BE-BC39-B6FD448DEEAD} = {16DEE8FC-5EDE-42DF-9386-528F579C166D}
 		{5A44879D-99C5-4866-9866-6CA7513D4FA2} = {16DEE8FC-5EDE-42DF-9386-528F579C166D}
+		{B22B1870-324E-4A88-B6A0-C1D6F20BAD86} = {16DEE8FC-5EDE-42DF-9386-528F579C166D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {777B6C86-08A0-4823-83C5-4DE00B557828}

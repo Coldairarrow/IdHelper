@@ -34,6 +34,12 @@
             <param name="jsonStr">Json字符串</param>
             <returns></returns>
         </member>
+        <member name="T:Coldairarrow.Util.TaskHelper">
+            <summary>
+            异步转同步,防止ASP.NET中死锁
+            https://stackoverflow.com/questions/5095183/how-would-i-run-an-async-taskt-method-synchronously
+            </summary>
+        </member>
         <member name="M:Coldairarrow.Util.ZookeeperBootstrapper.SyncNodes">
             <summary>
             同步临时节点与记录节点

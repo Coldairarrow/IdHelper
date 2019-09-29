@@ -39,7 +39,7 @@ namespace Coldairarrow.Util
             //Session过期需要重新建立Zookeeper客户端
             if (state == KeeperState.Expired)
             {
-                BuildZookeeperClient();
+                await BuildZookeeperClient();
                 Boot();
                 return;
             }
@@ -108,7 +108,7 @@ namespace Coldairarrow.Util
         private async Task<long> GetWorkerIdAsync()
         {
             if (_zookeeperClient == null)
-                BuildZookeeperClient();
+                await BuildZookeeperClient();
             //项目根节点
             await CheckNodeExists($"/{_projectKey}");
             //WorkerId记录根节点
@@ -136,14 +136,14 @@ namespace Coldairarrow.Util
             }
             throw new Exception("WorkerId已用完!");
         }
-        private void BuildZookeeperClient()
+        private async Task BuildZookeeperClient()
         {
             if (_zookeeperClient != null)
-                _zookeeperClient.closeAsync().GetAwaiter().GetResult();
+                await _zookeeperClient.closeAsync();
             _zookeeperClient = new ZookeeperClientBuilder(_connectString, _sessionTimeout)
-                    .OnEvent((theClient, theEvent) =>
+                    .OnEvent(async (theClient, theEvent) =>
                     {
-                        HandleEventAsync(theClient, theEvent).GetAwaiter().GetResult();
+                        await HandleEventAsync(theClient, theEvent);
                     })
                     .HandleLog((level, msg, ex) =>
                     {
@@ -158,7 +158,7 @@ namespace Coldairarrow.Util
 
         protected override long GetWorkerId()
         {
-            return GetWorkerIdAsync().GetAwaiter().GetResult();
+            return TaskHelper.RunSync(() => GetWorkerIdAsync());
         }
         public override bool Available()
         {
