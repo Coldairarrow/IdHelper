@@ -13,7 +13,7 @@ namespace Demo.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             new IdHelperBootstrapper()
-                    .UseZookeeper("61.153.17.5:2181", 200, "Purchase")
+                    .UseZookeeper("127.0.0.1:2181", 200, "Purchase")
                     .Boot();
         }
     }
