@@ -31,36 +31,43 @@ namespace Coldairarrow.Util
         private string _workerIdRecordRootPath { get => $"/{_projectKey}/IdHelper_WorkerIds_Record"; }
         private async Task HandleEventAsync(ZooKeeper theClient, WatchedEvent theEvent)
         {
-            string path = theEvent.getPath();
-            var type = theEvent.get_Type();
-            var state = theEvent.getState();
-            //Console.WriteLine($"收到事件,状态:{theEvent.getState()},类型:{type},节点:{path}");
-
-            //Session过期需要重新建立Zookeeper客户端
-            if (state == KeeperState.Expired)
+            try
             {
-                await BuildZookeeperClient();
-                Boot();
-                return;
+                string path = theEvent.getPath();
+                var type = theEvent.get_Type();
+                var state = theEvent.getState();
+                //Console.WriteLine($"收到事件,状态:{theEvent.getState()},类型:{type},节点:{path}");
+
+                //Session过期需要重新建立Zookeeper客户端
+                if (state == KeeperState.Expired)
+                {
+                    await BuildZookeeperClient();
+                    Boot();
+                    return;
+                }
+                //重新监听自己
+                if (type != EventType.NodeDeleted && !string.IsNullOrEmpty(path))
+                    await theClient.existsAsync(theEvent.getPath(), true);
+
+                //监听临时子节点
+                await BindChildren(_workderIdTmpRootPath);
+
+                //仅处理节点删除事件,记录停止时间,防止时间回调
+                string pattern = $"^{_workderIdTmpRootPath}/(.*?)$";
+                if (theEvent.get_Type() == Watcher.Event.EventType.NodeDeleted && Regex.IsMatch(path, pattern))
+                {
+                    var match = Regex.Match(path, pattern);
+                    string deletedWorkerId = match.Groups[1].ToString();
+                    string recordNodePath = $"{_workerIdRecordRootPath}/{deletedWorkerId}";
+                    var data = Encoding.UTF8.GetString((await _zookeeperClient.getDataAsync(recordNodePath, true)).Data)
+                        .ToObject<WorkerIdRecord>();
+                    data.EndTime = DateTime.Now;
+                    await _zookeeperClient.setDataAsync(recordNodePath, Encoding.UTF8.GetBytes(data.ToJson()));
+                }
             }
-            //重新监听自己
-            if (type != EventType.NodeDeleted && !string.IsNullOrEmpty(path))
-                await theClient.existsAsync(theEvent.getPath(), true);
-
-            //监听临时子节点
-            await BindChildren(_workderIdTmpRootPath);
-
-            //仅处理节点删除事件,记录停止时间,防止时间回调
-            string pattern = $"^{_workderIdTmpRootPath}/(.*?)$";
-            if (theEvent.get_Type() == Watcher.Event.EventType.NodeDeleted && Regex.IsMatch(path, pattern))
+            catch (Exception)
             {
-                var match = Regex.Match(path, pattern);
-                string deletedWorkerId = match.Groups[1].ToString();
-                string recordNodePath = $"{_workerIdRecordRootPath}/{deletedWorkerId}";
-                var data = Encoding.UTF8.GetString((await _zookeeperClient.getDataAsync(recordNodePath, true)).Data)
-                    .ToObject<WorkerIdRecord>();
-                data.EndTime = DateTime.Now;
-                await _zookeeperClient.setDataAsync(recordNodePath, Encoding.UTF8.GetBytes(data.ToJson()));
+
             }
         }
         /// <summary>
@@ -141,15 +148,15 @@ namespace Coldairarrow.Util
             if (_zookeeperClient != null)
                 await _zookeeperClient.closeAsync();
             _zookeeperClient = new ZookeeperClientBuilder(_connectString, _sessionTimeout)
-                    .OnEvent(async (theClient, theEvent) =>
-                    {
-                        await HandleEventAsync(theClient, theEvent);
-                    })
-                    .HandleLog((level, msg, ex) =>
-                    {
-                        //Console.WriteLine($"消息:{msg},异常:{ex?.GetType()}");
-                    })
-                    .Build();
+                .OnEvent(async (theClient, theEvent) =>
+                {
+                    await HandleEventAsync(theClient, theEvent);
+                })
+                .HandleLog((level, msg, ex) =>
+                {
+                    //Console.WriteLine($"消息:{msg},异常:{ex?.GetType()}");
+                })
+                .Build();
         }
 
         #endregion
