@@ -11,7 +11,7 @@
     <PackageProjectUrl>https://github.com/Coldairarrow/IdHelper</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Coldairarrow/IdHelper</RepositoryUrl>
     <PackageReleaseNotes />
-    <Version>1.4.0</Version>
+    <Version>1.4.1</Version>
     <RootNamespace>Coldairarrow.Util</RootNamespace>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>

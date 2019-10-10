@@ -11,12 +11,23 @@
         </member>
         <member name="M:Coldairarrow.Util.IdHelperBootstrapperExtention.UseZookeeper(Coldairarrow.Util.IdHelperBootstrapper,System.String,System.Int32,System.String)">
             <summary>
-            使用Zookeeper
+            使用Zookeeper,默认允许最大回拨时间为10分钟
             </summary>
             <param name="bootstrapper">原引导着</param>
             <param name="connectString">Zookeeper连接字符串</param>
             <param name="sessionTimeout">超时时间</param>
             <param name="projectKey">项目主键,同一个项目下的WokerId范围:1~1023</param>
+            <returns></returns>
+        </member>
+        <member name="M:Coldairarrow.Util.IdHelperBootstrapperExtention.UseZookeeper(Coldairarrow.Util.IdHelperBootstrapper,System.String,System.Int32,System.String,System.TimeSpan)">
+            <summary>
+            使用Zookeeper,自定义允许最大回拨时间
+            </summary>
+            <param name="bootstrapper">原引导着</param>
+            <param name="connectString">Zookeeper连接字符串</param>
+            <param name="sessionTimeout">超时时间</param>
+            <param name="projectKey">项目主键,同一个项目下的WokerId范围:1~1023</param>
+            <param name="maxCallbackTimespan">允许最大回拨时间</param>
             <returns></returns>
         </member>
         <member name="M:Coldairarrow.Util.Extention.ToJson(System.Object)">
@@ -44,7 +55,7 @@
             <summary>
             同步临时节点与记录节点
             说明:若临时节点不存在而记录节点存在,则将记录节点结束时间置为当前时间
-            若记录节点已结束10分钟(即最大允许10分钟时间回拨),则将记录节点也删除
+            若记录节点已结束_maxCallbackTimespan(即最大允许_maxCallbackTimespan时间回拨),则将记录节点也删除
             </summary>
             <returns></returns>
         </member>

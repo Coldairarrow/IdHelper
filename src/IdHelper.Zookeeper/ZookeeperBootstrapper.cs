@@ -12,11 +12,12 @@ namespace Coldairarrow.Util
     {
         #region 构造函数
 
-        public ZookeeperBootstrapper(string connectString, int sessionTimeout, string projectKey)
+        public ZookeeperBootstrapper(string connectString, int sessionTimeout, string projectKey, TimeSpan maxCallbackTimespan)
         {
             _connectString = connectString;
             _sessionTimeout = sessionTimeout;
             _projectKey = projectKey;
+            _maxCallbackTimespan = maxCallbackTimespan;
         }
 
         #endregion
@@ -27,6 +28,7 @@ namespace Coldairarrow.Util
         private string _connectString { get; }
         private int _sessionTimeout { get; }
         private string _projectKey { get; }
+        private TimeSpan _maxCallbackTimespan { get; }
         private string _workderIdTmpRootPath { get => $"/{_projectKey}/IdHelper_WorkerIds_TMP"; }
         private string _workerIdRecordRootPath { get => $"/{_projectKey}/IdHelper_WorkerIds_Record"; }
         private async Task HandleEventAsync(ZooKeeper theClient, WatchedEvent theEvent)
@@ -70,10 +72,11 @@ namespace Coldairarrow.Util
 
             }
         }
+
         /// <summary>
         /// 同步临时节点与记录节点
         /// 说明:若临时节点不存在而记录节点存在,则将记录节点结束时间置为当前时间
-        /// 若记录节点已结束10分钟(即最大允许10分钟时间回拨),则将记录节点也删除
+        /// 若记录节点已结束_maxCallbackTimespan(即最大允许_maxCallbackTimespan时间回拨),则将记录节点也删除
         /// </summary>
         /// <returns></returns>
         private async Task SyncNodes()
@@ -94,7 +97,7 @@ namespace Coldairarrow.Util
                         data.EndTime = DateTime.Now;
                         await _zookeeperClient.setDataAsync(recordNodePath, Encoding.UTF8.GetBytes(data.ToJson()));
                     }
-                    else if (data.EndTime < DateTime.Now.AddMinutes(-10))
+                    else if (data.EndTime < DateTime.Now + _maxCallbackTimespan)
                         await _zookeeperClient.deleteAsync(recordNodePath);
                 }
             }
