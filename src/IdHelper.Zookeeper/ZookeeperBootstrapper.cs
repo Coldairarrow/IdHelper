@@ -132,7 +132,9 @@ namespace Coldairarrow.Util
             {
                 string recordNodePath = $"{_workerIdRecordRootPath}/{i}";
                 string tmpNodePath = $"{_workderIdTmpRootPath}/{i}";
-                if (await _zookeeperClient.existsAsync(recordNodePath, true) == null)
+                if (await _zookeeperClient.existsAsync(recordNodePath, true) == null &&
+                    await _zookeeperClient.existsAsync(tmpNodePath, true) == null
+                    )
                 {
                     await _zookeeperClient.createAsync(tmpNodePath, null, Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
                     WorkerIdRecord newData = new WorkerIdRecord
